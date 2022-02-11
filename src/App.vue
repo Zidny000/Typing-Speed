@@ -1,11 +1,10 @@
 <script setup>
 import Input from './components/Input.vue'
-import { ref,watchEffect } from 'vue'
+import { ref,watchEffect,onUpdated } from 'vue'
+
 const api = 'http://api.quotable.io/random'
 const quote = ref("");
-let spans = []
-
-
+let el = ref(null)
 
 
 function getRandomQuote() {
@@ -16,38 +15,43 @@ function getRandomQuote() {
 
 const processQuote = async (ex)=>{
   quote.value = await getRandomQuote()
-  spans = []
+  
 }
 
-watchEffect(async () => await processQuote())
+watchEffect(async () => {
+  await processQuote()
+  
+  })
 
+onUpdated(() => {
+ 
+  Array.from(el.value.children).forEach(char =>{
+      char.classList.remove('correct');
+      char.classList.remove('incorrect');
+      
+    })
+  
+})
 
-
-
+function spans() {
+  return Array.from(el.value.children)
+}
 
 
 </script>
 
 <template>
 <div class="timer" id="timer"></div>
-  <div class="container">
-  <div class="quote-display" id="quoteDisplay" v-if="quote">
-    
-    <span v-for="(char,i) in quote.split('')" :ref="el => { if (el)spans[i] = el   }">{{char}}</span>
-    {{ spans.forEach(char =>{
-      char.classList.remove('correct');
-      char.classList.remove('incorrect');
-      
-    })}}
-
-    
-    
-    
-    <Input :pro="processQuote" :arrayQuote="spans"/>
-    
-    
+  <div class="container"  >
+  
+  <div class="quote-display" id="quoteDisplay" v-if="quote" ref="el">
+   <span v-for="char in quote.split('')" >{{char}}</span>
     
   </div>
+  <div>  
+    <Input :pro="processQuote" :arrayQuote="spans"/>
+  </div>
+
   </div>
   
 </template>
