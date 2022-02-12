@@ -32,10 +32,20 @@ body, .quote-input {
 }
 
 .timer {
-  position: absolute;
+  justify-content: center;
+  
   top: 2rem;
   font-size: 3rem;
   color: #F0DB4F;
+  font-weight: bold;
+}
+
+.point {
+  justify-content: center;
+  
+  top: 2rem;
+  font-size: 3rem;
+  color: #000000;
   font-weight: bold;
 }
 
@@ -43,6 +53,9 @@ body, .quote-input {
   margin-bottom: 1rem;
   margin-left: calc(1rem + 2px);
   margin-right: calc(1rem + 2px);
+  -webkit-user-select: none;
+  -ms-user-select: none; 
+  user-select: none;
 }
 
 .quote-input {
