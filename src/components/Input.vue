@@ -1,5 +1,6 @@
 <script setup>
 import { ref , onBeforeMount,onUpdated} from 'vue'
+import { useRouter, useRoute, RouterLink, useLink } from 'vue-router'
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
 let data = ref([])
@@ -9,7 +10,6 @@ let rightChar = ref(0)
 let totalCharA = ref(null)
 let rightCharA = ref(null)
 let time = ref(60);
-
 let timer;
 function reset(){
   time.value = 60;
@@ -18,6 +18,7 @@ function reset(){
   rightChar = 0;
   totalChar = 0;
   input.value = null
+  clearInterval(timer) 
   props.pro();
 }
 function start(){
@@ -41,9 +42,13 @@ function start(){
   },1000);
 }
 const props = defineProps({
-  arrayQuote:Function,
+  
   pro:Function
 })
+
+console.log(RouterLink)
+console.log(useRoute().params)
+
 function execute() {
   totalChar.value++
   let correct = true

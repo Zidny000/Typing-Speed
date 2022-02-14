@@ -1,10 +1,11 @@
 <script setup>
 import Input from './components/Input.vue'
+import NormalInput from './components/NormalInput.vue'
 import { ref,watchEffect,onUpdated } from 'vue'
 const api = 'http://api.quotable.io/random'
 const quote = ref("");
 let el = ref(null)
-
+let con = ref(true);
 function getRandomQuote() {
   return fetch(api)
     .then(response => response.json())
@@ -19,31 +20,46 @@ watchEffect(async () => {
   
   })
 onUpdated(() => {
- 
-  Array.from(el.value.children).forEach(char =>{
+  if(el.value.children){
+    Array.from(el.value.children).forEach(char =>{
       char.classList.remove('correct');
       char.classList.remove('incorrect');
       
     })
+  }
+
   
 })
 function spans() {
   return Array.from(el.value.children)
 }
+console.log(con)
 </script>
 
 <template>
 
-
+  
+  <button @click="()=>con = false">Timer Mode</button>
+  <button @click="()=>con = true">Normal Mode</button>
   <div class="container">
   <div class="quote-display" id="quoteDisplay" v-if="quote" ref="el">
    <span v-for="char in quote.split('')" >{{char}}</span>
-    
-  </div>
-  <div>  
-    <Input :pro="processQuote" :arrayQuote="spans"/>
-  </div>
 
   </div>
   
+   <div id="nav">
+   
+    <router-link :to="{name:'Input',params:{props:{pro:'agdf',game:'sdfsdf'}}}" >
+      Timer Mode
+    </router-link>
+     <router-link :to="{name:'NormalInput',params:{props:{pro:'agdf',game:'sdfsdf'}}}" >
+      Normal Mode
+    </router-link>
+    <router-view></router-view>
+  </div>
+
+  </div>
+ 
+  
 </template>
+

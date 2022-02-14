@@ -1,0 +1,4 @@
+  <div>  
+    <NormalInput :pro="processQuote" :arrayQuote="spans" v-if="con"/>
+    <Input :pro="processQuote" :arrayQuote="spans" v-else/>
+  </div>
