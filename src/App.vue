@@ -39,20 +39,17 @@ console.log(con)
 <template>
 
   
-  <button @click="()=>con = false">Timer Mode</button>
-  <button @click="()=>con = true">Normal Mode</button>
+  
   <div class="container">
   <div class="quote-display" id="quoteDisplay" v-if="quote" ref="el">
    <span v-for="char in quote.split('')" >{{char}}</span>
 
-  </div>
   
-   <div id="nav">
    
-    <router-link :to="{name:'Input',params:{props:{pro:'agdf',game:'sdfsdf'}}}" >
+    <router-link :to="{name:'Input',params:{prop:'ibjhbjj'}}" >
       Timer Mode
     </router-link>
-     <router-link :to="{name:'NormalInput',params:{props:{pro:'agdf',game:'sdfsdf'}}}" >
+     <router-link :to="{name:'NormalInput',params:{prop:'ibjhbjj'}}" >
       Normal Mode
     </router-link>
     <router-view></router-view>

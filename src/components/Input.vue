@@ -77,13 +77,13 @@ function execute() {
 </script>
 
 <template>
-  
+  <div>
   <textarea id="quoteInput" class="quote-input" v-model="input" @input='execute' autofocus  ></textarea>
   <div class="point" id="timer"> Timer : {{time}}</div>
   <button @click="start">Start</button>
   <button @click="reset">Reset</button>
   <div class="point" id="timer"> Total Entries : {{totalCharA}}</div>
   <div class="point" id="timer"> Right Entries : {{rightCharA}}</div>
-  
+  </div>
   
 </template>

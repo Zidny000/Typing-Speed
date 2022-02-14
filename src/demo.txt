@@ -2,3 +2,6 @@
     <NormalInput :pro="processQuote" :arrayQuote="spans" v-if="con"/>
     <Input :pro="processQuote" :arrayQuote="spans" v-else/>
   </div>
+
+  <button @click="()=>con = false">Timer Mode</button>
+  <button @click="()=>con = true">Normal Mode</button>

@@ -39,10 +39,10 @@ function execute() {
 </script>
 
 <template>
-  
+  <div>
   <textarea id="quoteInput" class="quote-input" v-model="input" @input='execute' autofocus  ></textarea>  
   <div class="point" id="timer"> Total Quote : {{totalQuote}}</div>
-  
+  </div>
   
   
 </template>
