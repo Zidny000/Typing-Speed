@@ -5,3 +5,11 @@
 
   <button @click="()=>con = false">Timer Mode</button>
   <button @click="()=>con = true">Normal Mode</button>
+
+  <router-link :to="{name:'Input'}" >
+      Timer Mode
+    </router-link>
+     <router-link :to="{name:'NormalInput'}" >
+      Normal Mode
+    </router-link>
+    <router-view></router-view>

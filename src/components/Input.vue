@@ -1,25 +1,27 @@
 <script setup>
 import { ref , onBeforeMount,onUpdated} from 'vue'
-import { useRouter, useRoute, RouterLink, useLink } from 'vue-router'
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-let data = ref([])
+import {data} from '../store/data'
+
+const useData = data();
+
+let datas = ref([])
 let input = ref(null)
 let totalChar = ref(0)
 let rightChar = ref(0)
-let totalCharA = ref(null)
-let rightCharA = ref(null)
+let totalCharA = ref(0)
+let rightCharA = ref(0)
 let time = ref(60);
 let timer;
+
 function reset(){
   time.value = 60;
-  totalCharA.value = null;
-  rightCharA.value = null;
-  rightChar = 0;
-  totalChar = 0;
+  totalCharA.value = 0;
+  rightCharA.value = 0;
+  rightChar.value = 0;
+  totalChar.value = 0;
   input.value = null
   clearInterval(timer) 
-  props.pro();
+  useData.pro();
 }
 function start(){
   
@@ -28,7 +30,7 @@ function start(){
     if(time.value == 0){
       totalCharA.value = totalChar.value
       if(input.value != null){
-        data.value.forEach((char,i)=>{     
+        datas.value.forEach((char,i)=>{     
         if(char.innerText == input.value[i]){
           rightChar.value++
         }
@@ -41,37 +43,36 @@ function start(){
   
   },1000);
 }
-const props = defineProps({
-  
-  pro:Function
-})
 
-console.log(RouterLink)
-console.log(useRoute().params)
 
 function execute() {
   totalChar.value++
+
   let correct = true
-  data.value = props.arrayQuote()
-  data.value.forEach((characterSpan,index)=>{
+  datas.value = [...useData.spans()];
+  console.log(datas.value)
+  datas.value.forEach((characterSpan,index)=>{
   if(input.value[index] == null){
     characterSpan.classList.remove('correct')
     characterSpan.classList.remove('incorrect')
     correct = false
+   
   }else if(characterSpan.innerText === input.value[index]){
     characterSpan.classList.add('correct')
     characterSpan.classList.remove('incorrect')
+    
   }else{
     characterSpan.classList.remove('correct')
     characterSpan.classList.add('incorrect')
     correct = false
+    
   }
   })
-  console.log(correct)
+  
   if(correct){
     rightChar.value = rightChar.value + input.value.split('').length
     input.value = null
-    props.pro();
+    useData.pro();
   } 
 }
 </script>

@@ -4,13 +4,14 @@ import NormalInput from './components/NormalInput.vue'
 
 /** @type {import('vue-router').RouterOptions['routes']} */
 export const routes = [
-  { path: '/timerinput/:prop',
+  { path: '/timerinput',
    name: "Input",
    component: Input,
+   props:true
     
     },
   {
-    path: '/normalinput/:prop',
+    path: '/',
     name: "NormalInput",
     component: NormalInput,
     
