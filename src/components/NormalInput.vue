@@ -9,6 +9,9 @@ let datas = ref([])
 let input = ref(null)
 let totalQuote = ref(0)
 
+if(useData.spans()){
+  useData.pro();
+}
 
 
 function execute() {

@@ -9,8 +9,12 @@ export const data = defineStore('data',{
     },
     actions:{
         spans(){
+            if(this.el == null){
+                return 0
+            }else{
+                return Array.from(this.el.children)
+            }
             
-            return Array.from(this.el.children)
 
         }
     }

@@ -13,6 +13,10 @@ let rightCharA = ref(0)
 let time = ref(60);
 let timer;
 
+if(useData.spans()){
+  useData.pro();
+}
+
 function reset(){
   time.value = 60;
   totalCharA.value = 0;
@@ -23,8 +27,9 @@ function reset(){
   clearInterval(timer) 
   useData.pro();
 }
+
 function start(){
-  
+  clearInterval(timer)
   timer = setInterval(()=>{
     time.value--
     if(time.value == 0){
@@ -43,7 +48,6 @@ function start(){
   
   },1000);
 }
-
 
 function execute() {
   totalChar.value++
@@ -86,5 +90,4 @@ function execute() {
   <div class="point" id="timer"> Total Entries : {{totalCharA}}</div>
   <div class="point" id="timer"> Right Entries : {{rightCharA}}</div>
   </div>
-  
 </template>
