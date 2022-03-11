@@ -3,7 +3,7 @@ import Input from './components/Input.vue'
 import NormalInput from './components/NormalInput.vue'
 import {data} from './store/data'
 import { ref,watchEffect,onUpdated } from 'vue'
-const api = 'http://api.quotable.io/random'
+const api = 'https://api.quotable.io/random'
 
 const useData = data();
 
@@ -43,7 +43,7 @@ useData.el = el
 <template>
   <div class="container">
   <div class="quote-display" id="quoteDisplay" v-if="quote" ref="el">
-   <span v-for="char in quote.split('')" >{{char}}</span>
+   <span v-for="(char,idx) in quote.split('')" :key="idx">{{char}}</span>
   </div>
   <router-view></router-view>
    <router-link to="/" >
